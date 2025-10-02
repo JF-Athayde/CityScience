@@ -1,0 +1,87 @@
+{% extends "model.html" %}
+
+{% block title %}
+  Mapa Interativo - Eco Explorer
+{% endblock %}
+
+{% block style %}
+  <!-- Leaflet (CDN) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <!-- MarkerCluster (CDN) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
+
+  <!-- Seus estilos (coloque em static/styles/) -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/eco-explorer.css') }}">
+   <link rel="stylesheet" href="{{ url_for('static', filename='styles/map.css') }}">
+{% endblock %}
+
+{% block content %}
+  {% include 'sub_header.html' %}
+  <section class="map-section">
+    <div id="map-sidebar" class="map-sidebar" aria-hidden="false">
+      <h2>Eco Explorer — Data Pathways</h2>
+      <p class="lead">Use the layers and popups to explore urban indicators derived from NASA Earth observation.</p>
+
+      <div class="controls">
+        <label for="metric-select">Indicator:</label>
+        <select id="metric-select">
+          <option value="composite">Composite</option>
+          <option value="heat">Temperature (Heat)</option>
+          <option value="air">Air quality (Air)</option>
+          <option value="humidity">Humidity</option>
+          <option value="wind">Wind speed (Wind)</option>
+          <option value="uv">UV index (UV)</option>
+          <option value="comfort">Outdoor comfort (Comfort)</option>
+        </select>
+      </div>
+
+      <div id="composite-info" class="composite-info" aria-live="polite">
+        <strong>Composite index</strong>
+        <div style="margin-top:6px;font-size:13px;color:#444">
+          Computation: weighted mean of indicators, normalized with the hyperbolic tangent (tanh). Weights — heat: 3, air: 2.2, UV: 2.5, comfort: 1.2. Higher values → greener markers (higher composite means generally better urban health).
+        </div>
+      </div>
+
+      <div class="search-block">
+        <label for="region-search">Search region:</label>
+        <div style="display:flex;gap:8px;margin-top:6px">
+          <input id="region-search" type="text" placeholder="Type a city or region" style="flex:1;padding:8px;border-radius:6px;border:1px solid #ddd">
+          <button id="region-search-btn" class="btn">Search</button>
+        </div>
+        <div id="search-result" class="search-result" aria-live="polite" style="margin-top:8px"></div>
+      </div>
+
+      <div id="legend" class="legend"></div>
+
+      <details>
+        <summary>Recommendations for urban planners</summary>
+        <ul>
+          <li>Prioritize urban greening in areas with high heat index.</li>
+          <li>Integrate NASA time series (Landsat/MODIS) for continuous monitoring.</li>
+          <li>Plan green corridors, shade infrastructure and permeable surfaces to reduce urban heat islands and UV exposure.</li>
+        </ul>
+      </details>
+
+      <p class="small">Local data: preloaded regions (JSON). Synthetic example data for hackathon purposes.</p>
+    </div>
+
+    <div id="map" class="map-container" role="region" aria-label="Interactive map">
+    </div>
+  </section>
+
+{% endblock %}
+
+{% block scripts %}
+  <!-- Leaflet JS (CDN) -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+   <!-- MarkerCluster JS (CDN) -->
+   <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster-src.js"></script>
+  <!-- Leaflet.heat (CDN) -->
+  <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
+   <script>
+     const REGIONS_JSON = "{{ url_for('static', filename='data/regions.json') }}";
+   </script>
+   <script src="{{ url_for('static', filename='scripts/map.js') }}"></script>
+
+{% endblock %}

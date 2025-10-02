@@ -1,0 +1,115 @@
+/* Hambúrguer escondido no desktop */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 25px;
+    height: 20px;
+    cursor: pointer;
+    position: fixed;
+    z-index: 2100;
+}
+
+.hamburger span {
+    display: block;
+    height: 3px;
+    background: #fff;
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px; /* escondida */
+    width: 250px;
+    height: 100%;
+    background: #111;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* empurra footer pro fim */
+    padding: 80px 20px 20px;
+    transition: left 0.3s ease;
+    z-index: 2050;
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+.sidebar-links {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar a {
+    color: #fff;
+    text-decoration: none;
+    margin: 15px 0;
+    font-size: 18px;
+    transition: color 0.2s;
+}
+
+.sidebar a:hover {
+    color: #00bcd4;
+}
+
+/* Footer da sidebar */
+.sidebar-footer {
+    border-top: 1px solid rgba(255,255,255,0.2);
+    padding-top: 15px;
+    font-size: 14px;
+    text-align: center;
+    color: #aaa;
+}
+
+.sidebar-footer a {
+    display: block;
+    margin-top: 8px;
+    font-size: 14px;
+    color: #00bcd4;
+    text-decoration: none;
+}
+
+.sidebar-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Efeito X */
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ===== Responsividade ===== */
+@media (max-width: 1000px) {
+    .right, 
+    .left .link { /* esconde os links grandes */
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .header {
+        justify-content: space-between;
+    }
+
+    .center {
+        flex: unset; /* libera espaço */
+    }
+}
+
+/* ===== Responsividade menor que 550px ===== */
+@media (max-width: 550px) {
+    .search {
+        display: none;
+    }
+}

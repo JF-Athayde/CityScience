@@ -1,0 +1,89 @@
+{% extends "model.html" %}
+
+{% block title %}City Science - Welcome{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/hero.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/posts.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/news.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/eco-explorer.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/map.css') }}">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+
+<style>
+    {% for n in news %}
+    #{{ n.id }} {
+        background-image: linear-gradient(65.99deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%),
+        url('{{ n.image }}');
+    }
+    {% endfor %}
+    .hero-section {
+        background: 
+            linear-gradient(65.99deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%), 
+            url('{{ url_for("static", filename="assets/banner.png") }}') center/cover no-repeat;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+    {% include 'sub_header.html' %}
+    <!-- Hero -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h2 class="hero-title">Exploring Sustainable Cities with NASA Data</h2>
+            <p class="hero-text">
+                Urban planners face new challenges with climate change, seeking ways to maintain human and environmental well-being. By analyzing NASA Earth observation data, it's possible to create smart urban growth strategies that balance society and nature.
+            </p>
+            <a href="{{ url_for('eco_explorer') }}" class="hero-btn">Enter Eco Explorer</a>
+        </div>
+    </section>
+    
+    <!-- Notícias -->
+    <h1 class="name-news">Latest News</h1>
+    <section class="section-news">
+        <div class="primary-news" id="{{ news[0].id }}">
+            <p>{{ news[0].subtitle }}</p>
+            <h2>{{ news[0].title }}</h2>
+        </div>
+        <div class="right-column">
+            <div class="secondary-news" id="{{ news[1].id }}">
+                <p>{{ news[1].subtitle }}</p>
+                <h2>{{ news[1].title }}</h2>
+            </div>
+        </div>
+        <div class="tertiary-news-container">
+            <div class="tertiary-news" id="{{ news[2].id }}">
+                <p>{{ news[2].subtitle }}</p>
+                <h2>{{ news[2].title }}</h2>
+            </div>
+            <div class="tertiary-news" id="{{ news[3].id }}">
+                <p>{{ news[3].subtitle }}</p>
+                <h2>{{ news[3].title }}</h2>
+            </div>
+        </div>
+    </section>
+
+    <!-- Extra -->
+    <section class="additional-info">
+        <h3>Why NASA Data?</h3>
+        <p>
+            NASA's satellite data provides unparalleled insights into urban heat islands, vegetation health, and air quality, enabling data-driven decisions for sustainable city planning.
+        </p>
+    </section>
+
+    <!-- Posts -->
+    <section class="posts">
+        <article class="post">
+            <h4>Urban Heat Island Analysis</h4>
+            <p>Discover how satellite data reveals temperature variations across the city, highlighting critical heat zones.</p>
+        </article>
+        <article class="post">
+            <h4>Vegetation Health Monitoring</h4>
+            <p>Explore the latest findings on urban greenery and its impact on air quality and resident well-being.</p>
+        </article>
+        <article class="post">
+            <h4>Air Quality Trends</h4>
+            <p>Stay informed about pollution levels and their correlation with traffic and industrial activity.</p>
+        </article>
+    </section>
+{% endblock %}

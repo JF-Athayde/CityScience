@@ -1,0 +1,41 @@
+<header class="header">
+
+    <div></div>
+    <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- Sidebar -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-links">
+            <a href="{{ url_for('landingpage') }}">Explore</a>
+            <a href="#">Research & Updates</a>
+            <a href="{{ url_for('about') }}">About</a>
+            <a href="{{ url_for('eco_explorer') }}">Eco-Explorer+</a>
+        </div>
+        <div class="sidebar-footer">
+            <p>&copy; 2025 City Science</p>
+            <a href="#">Privacy Policy</a>
+        </div>
+    </nav>
+
+    <div class="left">
+        <a href="{{ url_for('landingpage') }}" class="link">Explore</a>
+        <div class="search">
+            <input type="text" placeholder="Search">
+        </div>
+    </div>
+
+    <div class="center">
+        <p class="font01" style="color: rgb(255, 255, 255);">City Science</p>
+        <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Logo City Science" class="logo">
+    </div>
+
+    <div class="right">
+        <a href="#" class="link">Research & Updates</a>
+        <a href="{{ url_for('about') }}" class="link">About</a>
+        <a href="{{ url_for('eco_explorer') }}" class="link live">Eco-Explorer+ <span>LIVE</span></a>
+    </div>
+</header>

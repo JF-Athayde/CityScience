@@ -1,0 +1,332 @@
+/* =========================
+   Reset e Fontes Globais
+========================= */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.font01 {
+    font-family: "Ubuntu", sans-serif;
+    font-size: 2rem;
+    font-weight: 300;
+}
+
+.font02 {
+    font-family: "Ubuntu", sans-serif;
+    font-size: 5rem;
+    font-weight: 300;
+}
+
+/* =========================
+   Main com Fundo Estrelado
+========================= */
+main {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #0a0a0a 0%, #001f36 50%, #000814 100%);
+    min-height: 100vh;
+}
+
+/* Estrelas animadas */
+main::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.8), transparent),
+        radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+        radial-gradient(1px 1px at 130px 80px, rgba(255, 255, 255, 0.6), transparent),
+        radial-gradient(2px 2px at 160px 30px, #ddd, transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    animation: sparkle 20s linear infinite;
+    opacity: 0.6;
+    z-index: 0;
+}
+
+/* Conteúdo acima das estrelas */
+main > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* =========================
+   Keyframes
+========================= */
+@keyframes sparkle {
+    from { transform: translateX(0); }
+    to { transform: translateX(200px); }
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+/* =========================
+   Hero Section
+========================= */
+.hero-section {
+    height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.hero-title {
+    font-family: "Ubuntu", sans-serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.hero-text {
+    font-size: 1.2rem;
+    color: #b0bec5;
+    line-height: 1.6;
+}
+
+.upper-hero {
+    margin: 50px 20rem;
+}
+
+/* =========================
+   About Header
+========================= */
+.about-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.about-title {
+    font-family: "Ubuntu", sans-serif;
+    font-size: 3.5rem;
+    font-weight: 300;
+    margin-top: 5rem;
+    color: #fff;
+    margin-bottom: 20px;
+    text-shadow: 0 0 20px rgba(0, 188, 212, 0.5);
+}
+
+.about-subtitle {
+    font-size: 1.2rem;
+    color: #b0bec5;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* =========================
+   About Info Grid
+========================= */
+.about-heading h1 {
+    font-family: "Ubuntu", sans-serif;
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 60px;
+    color: #ffffff;
+}
+
+.about-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+}
+
+.about-block h3 {
+    font-family: "Ubuntu", sans-serif;
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin-bottom: 15px;
+}
+
+.about-block p {
+    font-size: 1.2rem;
+    color: #b0bec5;
+    line-height: 1.6;
+}
+
+/* =========================
+   Team Grid
+========================= */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-top: 60px;
+}
+
+.team-member {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 188, 212, 0.2);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.team-member::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(0, 188, 212, 0.1), transparent);
+    transform: rotate(45deg);
+    transition: all 0.6s ease;
+    opacity: 0;
+}
+
+.team-member:hover::before {
+    opacity: 1;
+    animation: shimmer 1.5s ease-in-out;
+}
+
+.team-member:hover {
+    transform: translateY(-10px);
+    border-color: rgba(0, 188, 212, 0.5);
+    box-shadow: 0 20px 40px rgba(0, 188, 212, 0.2);
+}
+
+/* =========================
+   Team Member Elements
+========================= */
+.member-photo img{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg, #00bcd4, #0097a7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: white;
+    border: 3px solid rgba(0, 188, 212, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.member-name {
+    font-family: "Ubuntu", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 2;
+}
+
+.member-role {
+    color: #dddddd;
+    font-weight: 600;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 2;
+}
+
+.member-description {
+    color: #b0bec5;
+    line-height: 1.6;
+    font-size: 0.95rem;
+    position: relative;
+    z-index: 2;
+    text-align: left;
+}
+
+/* =========================
+   Mission Statement
+========================= */
+.mission-statement {
+    background: rgba(0, 188, 212, 0.1);
+    border: 1px solid rgba(0, 188, 212, 0.3);
+    border-radius: 15px;
+    padding: 40px;
+    margin: 80px 0;
+    text-align: center;
+}
+
+.mission-title {
+    font-family: "Ubuntu", sans-serif;
+    font-size: 2rem;
+    color: #bebebe;
+    margin-bottom: 20px;
+}
+
+.mission-text {
+    color: #e0e0e0;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.member-links {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    position: relative;  /* garante que fique acima do ::before */
+    bottom: 0px;
+    z-index: 3;          /* maior que os elementos de fundo */
+}
+
+.member-links a {
+    text-decoration: none;
+    background: rgba(0, 188, 212, 0.2);
+    color: #00bcd4;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    position: relative;  /* garante prioridade de clique */
+    z-index: 3;
+}
+
+.member-links a:hover {
+    background: rgba(0, 188, 212, 0.4);
+    color: #fff;
+}
+
+/* =========================
+   Responsividade
+========================= */
+@media (max-width: 768px) {
+    .hero-title, .about-heading h1 {
+        font-size: 2.5rem;
+    }
+
+    .about-title {
+        font-size: 2.5rem;
+    }
+
+    .about-info {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .team-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}

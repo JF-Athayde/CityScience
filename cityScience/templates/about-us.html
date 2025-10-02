@@ -1,0 +1,93 @@
+{% extends 'model.html' %}
+
+{% block title %}About City Science{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/about-team.css') }}">
+{% endblock %}
+
+{% block content %}
+    {% include 'sub_header.html' %}
+    <main>
+        <!-- Team Section -->
+        <section class="about-section">
+            <div class="container">
+                <div class="about-header">
+                    <h1 class="about-title">Our Team</h1>
+                    <p class="about-subtitle">
+                        Passionate explorers of the cosmos, united by the mission of making the universe more accessible through technology and interactive education.
+                    </p>
+                </div>
+    
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="member-photo"><img src="{{ url_for('static', filename='assets/jf.jpeg') }}" alt="Profile Picture"></div>
+                        <h3 class="member-name">João Fellipe Coutinho Athayde</h3>
+                        <p class="member-role">Full-stack Developer & Researcher</p>
+                        <p class="member-description">
+                            I am João Fellipe Coutinho Athayde, I started programming at the age of nine and since then I have been studying Artificial Intelligence, Deep Learning, and systems development. I founded the Mind Forge Society and participate in programming and research projects, always seeking to learn and share knowledge.
+                        </p>
+                        <div class="member-links">
+                            <a href="https://www.linkedin.com/in/fellipe-athayde-990281303" target="_blank">LinkedIn</a>
+                            <a href="https://instagram.com/athayde.fellipe" target="_blank">Instagram</a>
+                            <a href="mailto:athaydefellipe@gmail.com">E-mail</a>
+                        </div>
+                    </div>
+    
+                    <div class="team-member">
+                        <div class="member-photo"><img src="{{ url_for('static', filename='assets/lr.jpeg') }}" alt="Profile Picture"></div>
+                        <h3 class="member-name">Marcos Lázaro Romão Silveira</h3>
+                        <p class="member-role">Electrical Engineer & Researcher</p>
+                        <p class="member-description">
+                            Electrical and Electronic Engineering student with a focus on Computer Engineering. Passionate about technological innovation and developing AI-driven solutions. 25 years old, currently pursuing a degree in Electrical Engineering at Fluminense Federal University (UFF).
+                        </p>
+                        <div class="member-links">
+                            <a href="http://linkedin.com/in/lazarobrr" target="_blank">LinkedIn</a>
+                            <a href="https://instagram.com/lazarobrr" target="_blank">Instagram</a>
+                            <a href="mailto:malazaro@id.uff.br">E-mail</a>
+                        </div>
+                    </div>
+    
+                    <div class="team-member">
+                        <div class="member-photo">
+                            <img src="{{ url_for('static', filename='assets/lourenco.jpg') }}" alt="Profile Picture">
+                        </div>
+                        <h3 class="member-name">Lorenzo Silva</h3>
+                        <p class="member-role">Neuroscientist & Researcher</p>
+                        <p class="member-description">
+                            Lorenzo Silva, 23 years old, is a student and researcher in the field of Neuroscience, dedicated to understanding brain mechanisms and their applications in technology, health, and human behavior. His focus is on uniting science and innovation to advance the understanding of the mind and develop intelligent solutions.
+                        </p>
+                        <div class="member-links">
+                            <a href="https://www.instagram.com/lourenco_jsilva?igsh=MXRleTVycHBmOXlvbA==" target="_blank">Instagram</a>
+                            <a href="mailto:silvalou0015@gmail.com">E-mail</a>
+                        </div>
+                    </div>
+
+                    <div class="team-member">
+                        <div class="member-photo"><img src="{{ url_for('static', filename='assets/edilaine.jpg') }}" alt="Member Picture"></div>
+                        <h3 class="member-name">Edilaine Rocha</h3>
+                        <p class="member-role">Journalist</p>
+                        <p class="member-description">
+                            I am a 23-year-old journalist passionate about geopolitics and international relations. I believe that knowledge is the key to demystifying the world and understanding its nuances. With a curious mind and an insatiable thirst for learning, I seek to share stories and perspectives that inspire reflection and understanding.
+                        </p>
+
+                        <div class="member-links">
+                            <a href="https://www.instagram.com/edilaineeerocha?igsh=MTV4aW1nNW1peWIxbA%3D%3D" target="_blank">Instagram</a>
+                            <a href="mailto:edilaineeerocha@gmail.com">E-mail</a>
+                        </div>
+                    </div>
+
+                    <div class="team-member">
+                        <div class="member-photo">👩</div>
+                        <h3 class="member-name"></h3>
+                        <p class="member-role">Person's Title</p>
+                        <p class="member-description">
+                            Brief description about the person, their skills, and interests.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}

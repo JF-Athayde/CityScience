@@ -1,0 +1,124 @@
+.section-news { 
+    display: flex;
+    max-width: 1200px;
+    margin: 10px auto;
+    gap: 10px;
+}
+
+.name-news {
+    margin-top: 50px;
+    text-align: center;
+    color: rgb(16, 0, 61);
+}
+
+/* Notícia principal ocupa metade da largura */
+.primary-news {
+    flex: 2;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 20px;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-repeat: no-repeat;
+    background-color: aqua;
+}
+
+/* Coluna da direita */
+.right-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-repeat: no-repeat;
+    min-height: 400px;
+}
+
+/* Notícia secundária ocupa metade da altura da coluna da direita */
+.secondary-news {
+    flex: 1;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    background-repeat: no-repeat;
+    justify-content: flex-end;
+    background-color: aqua;
+}
+
+/* coverer para as duas terciárias */
+.tertiary-news-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Notícias terciárias ocupam metade da altura do coverer */
+.tertiary-news {
+    flex: 1;
+    min-height: 100px;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    background-repeat: no-repeat;
+    justify-content: flex-end;
+    background-color: aqua;
+}
+
+/* 🔹 Responsividade */
+@media (max-width: 992px) {
+    .section-news {
+        flex-direction: column; /* empilha tudo */
+    }
+
+    .primary-news {
+        min-height: 300px;
+    }
+
+    .right-column {
+        flex-direction: row; /* secundária + terciárias lado a lado */
+        flex-wrap: wrap;
+        min-height: auto;
+    }
+
+    .secondary-news {
+        flex: 1 1 100%;
+        min-height: 200px;
+    }
+
+    .tertiary-news-container {
+        flex: 1 1 100%;
+        flex-direction: row; /* terciárias lado a lado */
+    }
+
+    .tertiary-news {
+        flex: 1 1 50%;
+        min-height: 150px;
+    }
+}
+
+@media (max-width: 600px) {
+    .primary-news {
+        min-height: 250px;
+        padding: 15px;
+    }
+
+    .secondary-news {
+        min-height: 150px;
+        padding: 15px;
+    }
+
+    .tertiary-news {
+        min-height: 120px;
+        padding: 10px;
+    }
+}

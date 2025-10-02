@@ -1,0 +1,21 @@
+{% extends 'model.html' %}
+
+{% block title %}Eco Explorer - Cidades Saudáveis{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/eco-explorer.css') }}">
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/map.css') }}">
+{% endblock %}
+
+{% block content %}
+{% include 'sub_header.html' %}
+{% endblock %}
+
+{% block scripts %}
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="{{ url_for('static', filename='scripts/leaflet-heat-optimized.js') }}"></script>
+<script src="{{ url_for('static', filename='scripts/map.js') }}"></script>
+<script src="{{ url_for('static', filename='scripts/eco-explorer.js') }}"></script>
+{% endblock %}
+

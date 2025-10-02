@@ -1,0 +1,242 @@
+.left-sidebar {
+    height: calc(100vh - 150px); /* ajusta altura (desconta header+footer) */
+    width: 320px;
+    background: linear-gradient(180deg, #000000, #001f36);
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Make the overall page container a horizontal layout so sidebar and workspace sit side-by-side */
+.background {
+    display: flex;
+    align-items: flex-start; /* align content to top of sidebar */
+    gap: 0;
+    min-height: calc(100vh - 150px);
+    flex-wrap: nowrap; /* prevent children from wrapping under each other on wide screens */
+}
+
+.workspace {
+    flex: 1 1 auto; /* take remaining space */
+    padding: 40px;
+    box-sizing: border-box;
+    background: transparent; /* keep existing background behavior */
+    min-width: 0; /* allow overflow handling inside */
+}
+
+/* ensure sidebar keeps fixed width within flex layout */
+.left-sidebar {
+    flex: 0 0 320px;
+    max-width: 320px;
+}
+
+/* Título fixo no topo */
+.left-sidebar-header {
+    padding: 25px 20px;
+    color: white;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    flex-shrink: 0;  /* não encolhe */
+}
+
+.left-sidebar-header h2 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.left-sidebar-header p {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* Área rolável da sidebar */
+.left-sidebar-body {
+    flex: 1;
+    overflow-y: auto;
+}
+
+/* Footer fixo na base da sidebar */
+.left-sidebar-footer {
+    padding: 15px 20px;
+    background: rgba(0,0,0,0.2);
+    color: #fff;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.left-sidebar-footer a {
+    color: #3498db;
+    text-decoration: none;
+    display: block;
+    margin-top: 5px;
+}
+
+.left-sidebar-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Menu */
+.menu-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.menu-header {
+    display: flex;
+    align-items: center;
+    padding: 18px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #ecf0f1;
+    background: transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.menu-header:hover {
+    background: linear-gradient(
+        90deg,
+        rgba(52, 152, 219, 0.1),
+        rgba(41, 128, 185, 0.1)
+    );
+    color: #3498db;
+}
+
+.menu-header::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, #3498db, #2980b9);
+    transition: width 0.3s ease;
+    z-index: 0;
+}
+
+.menu-header:hover::before {
+    width: 4px;
+}
+
+.menu-icon {
+    font-size: 1.3rem;
+    margin-right: 15px;
+    width: 24px;
+    text-align: center;
+    z-index: 1;
+    position: relative;
+}
+
+.menu-title {
+    flex: 1;
+    font-weight: 500;
+    font-size: 1rem;
+    z-index: 1;
+    position: relative;
+}
+
+.menu-arrow {
+    font-size: 0.9rem;
+    transition: transform 0.3s ease;
+    z-index: 1;
+    position: relative;
+}
+
+.menu-item.active .menu-arrow {
+    transform: rotate(90deg);
+}
+
+.submenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.menu-item.active .submenu {
+    max-height: 200px;
+    padding: 8px 0;
+}
+
+.submenu-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px 12px 60px;
+    color: #bdc3c7;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    font-size: 0.95rem;
+}
+
+.submenu-item:hover {
+    background: rgba(52, 152, 219, 0.1);
+    color: #3498db;
+    padding-left: 65px;
+}
+
+.submenu-item::before {
+    content: '•';
+    margin-right: 12px;
+    color: #7f8c8d;
+    font-size: 1.2rem;
+}
+
+.submenu-item:hover::before {
+    color: #3498db;
+}
+
+.main-content {
+    margin-left: 320px;   /* mesmo valor da sidebar */
+    padding: 40px;
+}
+
+.content-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.content-card h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, #fff, #e8f4fd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.content-card p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+.content-section {
+    display: none;
+}
+
+.content-section.active {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .left-sidebar {
+        width: 280px;
+        top: 70px;        /* ajuste altura do header mobile */
+        bottom: 70px;     /* ajuste altura do footer mobile */
+    }
+
+    /* on small screens stack the layout vertically: sidebar above workspace */
+    .background { flex-direction: column; }
+    .workspace { padding: 20px; }
+    .main-content {
+        margin-left: 280px;
+        padding: 20px;
+    }
+}

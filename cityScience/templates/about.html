@@ -1,0 +1,70 @@
+{% extends 'model.html' %}
+
+{% block title %}About City Science{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/about.css') }}">
+{% endblock %}
+
+{% block content %}
+    {% include 'sub_header.html' %}
+    <main>
+        <div class="upper-hero">
+            <!-- Main About Heading -->
+            <section class="about-heading">
+                <h1>About</h1>
+            </section>
+        
+            <!-- Mission, Vision, Values & Approach -->
+            <section class="about-info">
+                <div class="about-block">
+                    <h3>Our Mission</h3>
+                    <p>
+                        To transform Earth observation data into actionable intelligence for urban managers, enabling the development of healthier, more equitable, and more resilient cities for everyone.
+                    </p>
+                </div>
+        
+                <div class="about-block">
+                    <h3>Our Vision</h3>
+                    <p>
+                        A future where every urban planning decision, in any city worldwide, is informed by Earth observation science, ensuring safer and healthier environments for future generations.
+                    </p>
+                </div>
+        
+                <div class="about-block">
+                    <h3>Our Values</h3>
+                    <p>
+                        We value sustainability, inclusivity, and innovation. Our work is guided by the belief that science and technology should serve people and the planet, empowering cities to thrive responsibly.
+                    </p>
+                </div>
+        
+                <div class="about-block">
+                    <h3>Our Approach</h3>
+                    <p>
+                        By combining NASA's cutting-edge Earth observation data with advanced analytics, we provide urban leaders with the tools they need to make smarter, data-driven decisions for the future.
+                    </p>
+                </div>
+
+                <div class="about-block">
+                    <h3>Our Strategy</h3>
+                    <p>
+                        We focus on leveraging innovative technologies and collaborative research to create practical solutions that address urban challenges effectively and sustainably.
+                    </p>
+                </div>
+
+                <div class="about-block">
+                    <h3>Our Commitment</h3>
+                    <p>
+                        We are committed to transparency, scientific rigor, and inclusivity in all our projects, ensuring our work benefits communities and supports responsible urban development worldwide.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Botão para página da equipe -->
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="{{ url_for('about_us') }}" class="about-button">Meet Our Team</a>
+            </div>
+
+        </div>
+    </main>
+{% endblock %}

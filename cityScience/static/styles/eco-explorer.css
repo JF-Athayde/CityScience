@@ -1,0 +1,44 @@
+.eco-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: linear-gradient(90deg, #000000, #001f36);
+    height: 50px;
+}
+
+.eco-nav a {
+    color: white;
+    text-decoration: none;
+    padding: 12px 16px;
+    font-family: "Open Sans", sans-serif;
+}
+
+.eco-nav a:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive: make the sub-header fit on smaller screens while keeping tabs centered */
+@media (max-width: 900px) {
+    .eco-nav {
+        height: 44px;
+    }
+    .eco-nav a {
+        font-size: 14px;
+        padding: 10px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .eco-nav {
+        /* allow wrapping to avoid overflow and keep center alignment */
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6px;
+        height: auto;
+        padding: 6px 8px;
+    }
+    .eco-nav a {
+        font-size: 12px;
+        padding: 6px 8px;
+    }
+}

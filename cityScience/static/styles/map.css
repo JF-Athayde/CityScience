@@ -1,0 +1,172 @@
+/* Styles for the interactive map and sidebar */
+:root{
+  --sidebar-width:320px;
+  --bg:#f7f9fb;
+  --accent:#0b557a;
+  --muted:#666;
+}
+
+.map-section{
+  display:flex;
+  gap:18px;
+  align-items:stretch;
+  padding:20px;
+  background:var(--bg);
+}
+
+.map-sidebar{
+  width:var(--sidebar-width);
+  min-width:260px;
+  background:white;
+  transition: transform 0.32s cubic-bezier(.2,.9,.2,1), opacity 0.28s ease;
+  border-radius:8px;
+  padding:16px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.08);
+  font-family: "Open Sans", Arial, sans-serif;
+}
+
+.map-sidebar h2{
+  margin:0 0 8px 0;
+  color:var(--accent);
+  font-size:18px;
+}
+
+.map-sidebar .lead{
+  font-size:13px;
+  color:var(--muted);
+  margin-bottom:12px;
+}
+
+.map-sidebar .controls{
+  margin:10px 0 16px 0;
+}
+
+.map-sidebar label{display:block;font-size:13px;margin-bottom:6px;color:#222}
+.map-sidebar select{width:100%;padding:8px;border-radius:4px;border:1px solid #ddd}
+
+.legend{
+  margin-top:12px;
+  padding:8px;
+  background:#fff8;
+  border-radius:6px;
+  font-size:13px;
+}
+
+.composite-info{margin-top:12px;padding:8px;border-radius:6px;background:linear-gradient(180deg,#ffffff,#fbfeff);border:1px solid rgba(11,85,122,0.04);font-size:13px}
+.legend-gradient{height:12px;border-radius:6px;margin-top:8px;box-shadow:inset 0 1px 0 rgba(255,255,255,0.35)}
+.legend-scale{display:flex;justify-content:space-between;font-size:12px;color:#555;margin-top:6px}
+
+/* custom cluster SVG styling */
+.custom-cluster{display:block;box-shadow:0 2px 8px rgba(0,0,0,0.12);border-radius:50%;cursor:pointer}
+
+.legend .item{display:flex;align-items:center;margin:6px 0;font-size:13px}
+.legend .swatch{width:12px;height:12px;border-radius:50%;display:inline-block;margin-right:8px;border:1px solid rgba(0,0,0,0.12)}
+.legend .value{min-width:30px;text-align:right;display:inline-block;margin-right:8px}
+
+.map-container{
+  flex:1;
+  min-height:72vh;
+  /* keep map visually contained: limit maximum height to viewport minus headers/toolbars */
+  max-height: calc(100vh - 140px);
+  border-radius:8px;
+  overflow:hidden;
+  box-shadow:0 6px 18px rgba(0,0,0,0.06);
+}
+
+#map{
+  width:100%;
+  height: min(72vh, calc(100vh - 140px));
+  max-height: calc(100vh - 140px);
+}
+
+/* Ensure the Leaflet internal container doesn't exceed its parent */
+.leaflet-container{
+  width:100% !important;
+  height:100% !important;
+  max-height:100% !important;
+}
+
+/* Sidebar toggle buttons */
+.sidebar-close{display:none;position:absolute;right:12px;top:12px;background:rgba(0,0,0,0.06);border:none;padding:6px 8px;border-radius:6px;cursor:pointer}
+.sidebar-open{display:none;position:absolute;left:12px;top:12px;background:rgba(0,0,0,0.06);border:none;padding:6px 8px;border-radius:6px;cursor:pointer;z-index:4000}
+.sidebar-open{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:8px}
+/* When sidebar is hidden on small screens we slide it out */
+.map-sidebar.closed{transform:translateY(-8px) translateX(6px) scale(0.995);opacity:0;pointer-events:none}
+.sidebar-open{box-shadow:0 6px 18px rgba(0,0,0,0.08);background:#fff}
+.sidebar-open:focus{outline:2px solid rgba(11,85,122,0.18)}
+
+/* Legend overlay for small screens */
+.legend{position:relative}
+.legend.overlay{position:absolute;left:12px;bottom:12px;z-index:4000;max-width:320px}
+
+.map-sidebar .small{font-size:12px;color:#777;margin-top:12px}
+
+.search-block{margin-top:12px}
+.search-block input[type="text"]{width:100%;box-sizing:border-box}
+.btn{background:var(--accent);color:white;border:none;padding:8px 12px;border-radius:6px;cursor:pointer}
+.btn:hover{filter:brightness(0.95)}
+.search-result{background:#f8fbff;border:1px solid rgba(11,85,122,0.05);padding:8px;border-radius:6px;font-size:13px;color:#222}
+
+@media (max-width:900px){
+  .map-section{flex-direction:column}
+  .map-sidebar{width:100%;min-width:0;order:2}
+  .map-container{order:1}
+  #map{height:60vh}
+  .map-sidebar{padding:12px}
+  .map-sidebar .controls{display:flex;flex-direction:column;gap:8px}
+  .map-sidebar .search-block{order:1}
+  .sidebar-close{display:block}
+  .sidebar-open{display:block}
+  .map-container{position:relative}
+  .legend.overlay{left:12px;bottom:80px}
+}
+
+@media (max-width:480px){
+  #map{height:56vh}
+  .map-sidebar{padding:10px}
+  .composite-info{font-size:12px}
+  .btn{padding:8px}
+}
+
+/* Styled details/summary for recommendations */
+.map-sidebar details{
+  margin-top:12px;
+  background: linear-gradient(180deg, #fbfeff 0%, #f6fbff 100%);
+  border: 1px solid rgba(11,85,122,0.06);
+  padding:8px 10px;
+  border-radius:8px;
+  transition: box-shadow .18s ease, transform .12s ease;
+}
+.map-sidebar details[open]{
+  box-shadow: 0 8px 20px rgba(3,30,43,0.06);
+}
+.map-sidebar summary{
+  list-style:none;
+  cursor:pointer;
+  font-weight:600;
+  color:var(--accent);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:4px 2px;
+  font-size:14px;
+}
+.map-sidebar summary::-webkit-details-marker{display:none}
+.map-sidebar summary:after{
+  content: "\25be"; /* down caret */
+  display:inline-block;
+  transform: rotate(0deg);
+  transition: transform .18s ease;
+  color:var(--accent);
+  font-size:12px;
+  margin-left:8px;
+}
+.map-sidebar details[open] summary:after{
+  transform: rotate(180deg);
+}
+.map-sidebar details p, .map-sidebar details ul{
+  margin:8px 0 0 0;
+  color:#444;
+  font-size:13px;
+}
+.map-sidebar details ul{padding-left:18px;margin-top:6px}

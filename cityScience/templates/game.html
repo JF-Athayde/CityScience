@@ -1,0 +1,127 @@
+{% extends 'model.html' %}
+
+{% block title %}City Science Game{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/game.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/background.css') }}">
+{% endblock %}
+
+{% block content %}
+    {% include 'sub_header.html' %}
+
+    <div class="background">
+        <div class="left-sidebar">
+            <!-- Título fixo -->
+            <div class="left-sidebar-header">
+                <div class="center">
+                    <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Logo City Science" class="logo">
+                </div>
+            </div>
+    
+            <!-- Área rolável com os menus -->
+            <div class="left-sidebar-body">
+                <!-- Dashboard -->
+                <div class="menu-item">
+                    <div class="menu-header" onclick="toggleMenu(this)">
+                        <span class="menu-icon">📊</span>
+                        <span class="menu-title">Dashboard</span>
+                        <span class="menu-arrow">▶</span>
+                    </div>
+                    <div class="submenu">
+                        <div class="submenu-item">Visão Geral</div>
+                        <div class="submenu-item">Análises Ambientais</div>
+                        <div class="submenu-item">Relatórios Climáticos</div>
+                    </div>
+                </div>
+    
+                <!-- Missões -->
+                <div class="menu-item">
+                    <div class="menu-header" onclick="toggleMenu(this)">
+                        <span class="menu-icon">🎯</span>
+                        <span class="menu-title">Missões</span>
+                        <span class="menu-arrow">▶</span>
+                    </div>
+                    <div class="submenu">
+                        <div class="submenu-item">Reduzir Poluição</div>
+                        <div class="submenu-item">Aumentar Áreas Verdes</div>
+                        <div class="submenu-item">Economia de Água</div>
+                        <div class="submenu-item">Energia Sustentável</div>
+                    </div>
+                </div>
+    
+                <!-- Dados da NASA -->
+                <div class="menu-item">
+                    <div class="menu-header" onclick="toggleMenu(this)">
+                        <span class="menu-icon">🛰️</span>
+                        <span class="menu-title">Dados da NASA</span>
+                        <span class="menu-arrow">▶</span>
+                    </div>
+                    <div class="submenu">
+                        <div class="submenu-item">Temperatura Global</div>
+                        <div class="submenu-item">Monitoramento do Ar</div>
+                        <div class="submenu-item">Uso do Solo</div>
+                        <div class="submenu-item">Risco de Enchentes</div>
+                    </div>
+                </div>
+    
+                <!-- Comunidade -->
+                <div class="menu-item">
+                    <div class="menu-header" onclick="toggleMenu(this)">
+                        <span class="menu-icon">👥</span>
+                        <span class="menu-title">Comunidade</span>
+                        <span class="menu-arrow">▶</span>
+                    </div>
+                    <div class="submenu">
+                        <div class="submenu-item">Ranking de Jogadores</div>
+                        <div class="submenu-item">Projetos Colaborativos</div>
+                        <div class="submenu-item">Troca de Ideias</div>
+                    </div>
+                </div>
+    
+                <!-- Loja Sustentável -->
+                <div class="menu-item">
+                    <div class="menu-header" onclick="toggleMenu(this)">
+                        <span class="menu-icon">💚</span>
+                        <span class="menu-title">Loja Sustentável</span>
+                        <span class="menu-arrow">▶</span>
+                    </div>
+                    <div class="submenu">
+                        <div class="submenu-item">Plantar Árvores 🌱</div>
+                        <div class="submenu-item">Painéis Solares ☀️</div>
+                        <div class="submenu-item">Reciclagem ♻️</div>
+                    </div>
+                </div>
+    
+                <!-- Configurações -->
+                <div class="menu-item">
+                    <div class="menu-header" onclick="toggleMenu(this)">
+                        <span class="menu-icon">⚙️</span>
+                        <span class="menu-title">Configurações</span>
+                        <span class="menu-arrow">▶</span>
+                    </div>
+                    <div class="submenu">
+                        <div class="submenu-item">Preferências</div>
+                        <div class="submenu-item">Perfil</div>
+                        <div class="submenu-item">Segurança</div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Footer fixo -->
+            <div class="left-sidebar-footer">
+                <p>&copy; 2025 City Science</p>
+            </div>
+        </div>
+    
+        <div class="workspace">
+            <h1>Olá</h1>
+        </div>
+    </div>
+    
+
+    {% block script %}
+    <script src="{{ url_for('static', filename='scripts/left-sidebar.js') }}"></script>
+    {% endblock %}
+
+{% endblock %}

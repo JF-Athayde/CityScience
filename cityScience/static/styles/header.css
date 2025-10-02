@@ -1,0 +1,106 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.font01 {
+    font-family: "Ubuntu", sans-serif;
+    font-size: 2rem;   /* tamanho reduzido */
+    font-weight: 300;    /* bem mais fina */
+}
+
+/* Header NASA Style */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, #000000, #001f36);
+    padding: 10px 30px;
+    font-family: "Open Sans", sans-serif;
+    color: #fff;
+    height: 100px;
+}
+
+.left,
+.right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+}
+
+.logo {
+    height: 50px;
+}
+
+.link {
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.link:hover {
+    color: #dbdbdb;
+}
+
+.search {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search input {
+    width: 25vw;
+    max-width: 300px;
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background: transparent;
+}
+
+/* Efeito ao focar */
+.search input:focus {
+    border-color: #00bcd4;
+    box-shadow: 0 0 6px rgba(0, 188, 212, 0.4);
+}
+
+/* Placeholder mais suave */
+.search input::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
+/* Ícone dentro do campo */
+.search::before {
+    position: absolute;
+    right: 12px;
+    font-size: 16px;
+    color: #888;
+    pointer-events: none;
+}
+
+
+/* NASA+ Live */
+.live span {
+    background: red;
+    color: white;
+    font-size: 0.6rem;
+    font-weight: 700;
+    padding: 2px 4px;
+    margin-left: 5px;
+    border-radius: 2px;
+}
