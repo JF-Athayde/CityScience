@@ -1,0 +1,57 @@
+{% extends "model.html" %}
+
+{% block title %}Create Bulletin - Eco Explorer{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/create_bulletin.css') }}">
+{% endblock %}
+
+{% block content %}
+{% include 'sub_header.html' %}
+
+<nav class="bulletin-menu">
+  <a href="{{ url_for('create_bulletin_urban') }}" id="b1">Urban Insight</a>
+  <a href="{{ url_for('create_bulletin_build') }}">GreenBuild Report</a>
+</nav>
+<div class="bulletin-form-container">
+  <h2>Create Environmental Bulletin</h2>
+  <form method="POST" action="{{ url_for('create_bulletin_build') }}" class="bulletin-form" onsubmit="showLoading()">
+    {{ form.hidden_tag() }}
+    
+    <label for="city">{{ form.city.label.text }}</label>
+    {{ form.city(class="") }}
+
+    <label for="prompt">{{ form.prompt.label.text }}</label>
+    {{ form.prompt(class="") }}
+
+    <label for="obs">{{ form.obs.label.text }}</label>
+    {{ form.obs(class="") }}
+
+    {{ form.submit(class="btn-submit") }}
+  </form>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <ul class="flashes">
+        {% for category, message in messages %}
+          <li class="flash {{ category }}">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+</div>
+
+<div id="loading-overlay">
+  <p><strong>Generating bulletin...</strong> Please wait a few minutes.</p>
+  <p><em>Note: It usually takes less than 2 minutes.</em></p>
+  <div class="spinner"></div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  function showLoading() {
+    document.getElementById('loading-overlay').style.display = 'flex';
+  }
+</script>
+{% endblock %}
