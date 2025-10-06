@@ -170,3 +170,31 @@
   font-size:13px;
 }
 .map-sidebar details ul{padding-left:18px;margin-top:6px}
+
+/* Responsividade apenas para o popup do Leaflet */
+.leaflet-popup-content-wrapper {
+  max-width: 90vw;      /* nunca ultrapassa 90% da largura da tela */
+  width: auto;           /* se ajusta automaticamente ao conteúdo */
+  word-wrap: break-word; /* evita que textos grandes estourem o limite */
+  overflow-wrap: anywhere;
+  font-size: 14px;       /* tamanho de texto confortável */
+  line-height: 1.4;
+}
+
+/* Ajuste adicional para telas pequenas */
+@media (max-width: 600px) {
+  .leaflet-popup-content-wrapper {
+    max-width: 75vw;
+    font-size: 13px;
+    padding: 8px;
+  }
+}
+
+/* Ajuste para telas médias (tablets) */
+@media (min-width: 601px) and (max-width: 900px) {
+  .leaflet-popup-content-wrapper {
+    max-width: 80vw;
+    font-size: 14px;
+    padding: 10px;
+  }
+}

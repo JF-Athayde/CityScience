@@ -208,6 +208,51 @@
     text-decoration-color: #388e3c; /* Mantém a cor da linha no hover */
 }
 
+/* === Estilo base para todas as caixas de seleção === */
+select {
+  width: 100%;
+  padding: 10px 40px 10px 12px; /* espaço interno e seta à direita */
+  border: 1px solid #ced6e0;
+  border-radius: 8px;
+  background-color: #fff;
+  font-size: 15px;
+  color: #2f3640;
+  cursor: pointer;
+  appearance: none; /* remove estilo nativo da seta */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, #3c9ee7 50%),
+                    linear-gradient(135deg, #3c9ee7 50%, transparent 50%);
+  background-position: right 16px top 50%, right 12px top 50%;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Sombra e borda no foco */
+select:focus {
+  border-color: #3c9ee7;
+  box-shadow: 0 0 0 3px rgba(60, 158, 231, 0.2);
+  outline: none;
+}
+
+/* Hover */
+select:hover {
+  border-color: #3c9ee7;
+}
+
+/* Placeholder estilizado se necessário */
+select option[disabled][selected] {
+  color: #999;
+}
+
+/* Para selects múltiplos (opcional) */
+select[multiple] {
+  height: auto;
+  min-height: 100px;
+  padding: 10px 12px;
+}
+
 /* Responsividade */
 @media (max-width: 640px) {
   .bulletin-form-container {

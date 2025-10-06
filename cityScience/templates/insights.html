@@ -3,10 +3,76 @@
 {% block title %}About City Science{% endblock %}
 
 {% block style %}
-    
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/insights.css') }}">
 {% endblock %}
 
 {% block content %}
-    {% include 'sub_header.html' %}
-    <h1>Insights</h1>
+{% include 'sub_header.html' %}
+
+<div class="insights-container">
+    <div class="left-section">
+        <h1 class="insights-title">Weather Insights</h1>
+        <form method="POST" class="insights-form">
+            {{ form.hidden_tag() }}
+            <label for="{{ form.city.id }}">{{ form.city.label.text }}</label>
+            {{ form.city(class="") }}
+            {{ form.submit(class="btn-submit") }}
+        </form>
+    </div>
+
+    <div class="right-section">
+        {% if weather_data and weather_data.current %}
+            <div class="insights-result">
+                <div class="location-info">
+                    <div class="location-name">📍 {{ weather_data.location.name }}, {{ weather_data.location.region }}, {{ weather_data.location.country }}</div>
+                    <div class="location-time">Updated: {{ weather_data.location.last_updated }}</div>
+                </div>
+
+                <div class="weather-header">Current Weather Conditions</div>
+                <div class="weather-grid">
+                    {% for label, value, icon in [
+                        ('Condition', weather_data.current.condition, '☀️'),
+                        ('Temperature', weather_data.current.temp_c ~ '°C (feels like ' ~ weather_data.current.feelslike_c ~ '°C)', '🌡️'),
+                        ('Humidity', weather_data.current.humidity ~ '%', '💧'),
+                        ('Wind', weather_data.current.wind_kph ~ ' kph (' ~ weather_data.current.wind_dir ~ '), gusts ' ~ weather_data.current.gust_kph ~ ' kph', '💨'),
+                        ('Cloud Coverage', weather_data.current.cloud ~ '%', '☁️'),
+                        ('Pressure', weather_data.current.pressure_mb ~ ' mb', '🔽'),
+                        ('Visibility', weather_data.current.vis_km ~ ' km', '👁️'),
+                        ('UV Index', weather_data.current.uv, '☀️'),
+                        ('Precipitation', weather_data.current.precip_mm ~ ' mm', '🌧️')
+                    ] %}
+                        <div class="weather-card">
+                            <span class="weather-icon">{{ icon }}</span>
+                            <div class="weather-label">{{ label }}</div>
+                            <div class="weather-value">{{ value }}</div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                {% if weather_data.forecast %}
+                <div class="weather-header">Forecast</div>
+                <div class="weather-grid">
+                    {% for day in weather_data.forecast %}
+                        <div class="weather-card">
+                            <div class="weather-label">{{ day.date }} - {{ day.condition }}</div>
+                            <div class="weather-value">
+                                Max: {{ day.maxtemp }}°C | Min: {{ day.mintemp }}°C | Avg: {{ day.avgtemp }}°C<br>
+                                Rain: {{ day.chance_of_rain }}% | Snow: {{ day.chance_of_snow }}%<br>
+                                Max Wind: {{ day.maxwind }} kph | Precip: {{ day.totalprecip }} mm | Humidity: {{ day.avghumidity }}%<br>
+                                Sunrise: {{ day.sunrise }} | Sunset: {{ day.sunset }}<br>
+                                Moonrise: {{ day.moonrise }} | Moonset: {{ day.moonset }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        {% elif weather_data.error %}
+            <p>{{ weather_data.error }}</p>
+        {% endif %}
+    </div>
+</div>
+
 {% endblock %}
+
+{% block script %}{% endblock %}

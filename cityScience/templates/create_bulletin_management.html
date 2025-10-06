@@ -1,0 +1,84 @@
+{% extends "model.html" %}
+
+{% block title %}Policy Bulletin{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/create_bulletin.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/management.css') }}">
+{% endblock %}
+
+{% block content %}
+{% include 'sub_header.html' %}
+
+<nav class="bulletin-menu">
+  <a href="{{ url_for('create_bulletin_urban') }}">Urban Insight</a>
+  <a href="{{ url_for('create_bulletin_build') }}">GreenBuild Report</a>
+  <a href="{{ url_for('create_bulletin_management') }}" id="b1">Policy Bulletin</a>
+</nav>
+
+<div class="bulletin-form-container">
+  <h2>Public Policy & Regional Management Bulletin</h2>
+  <form method="POST" action="{{ url_for('create_bulletin_management') }}" class="bulletin-form" onsubmit="showLoading()">
+    {{ form.hidden_tag() }}
+
+    <!-- City / Region -->
+    <label for="city">{{ form.city.label.text }}</label>
+    {{ form.city(class="") }}
+
+    <!-- Problem -->
+    <label for="problem">{{ form.problem.label.text }}</label>
+    {{ form.problem(class="", rows="4") }}
+    <small>{{ form.problem.description }}</small>
+
+    <!-- Goal -->
+    <label for="goal">{{ form.goal.label.text }}</label>
+    {{ form.goal(class="", rows="4") }}
+    <small>{{ form.goal.description }}</small>
+
+    <!-- Budget -->
+    <label for="budget">{{ form.budget.label.text }}</label>
+    {{ form.budget(class="") }}
+    <small>{{ form.budget.description }}</small>
+
+    <!-- Timeframe -->
+    <label for="timeframe">{{ form.timeframe.label.text }}</label>
+    {{ form.timeframe(class="") }}
+    <small>{{ form.timeframe.description }}</small>
+
+    <!-- Priority -->
+    <label for="priority">{{ form.priority.label.text }}</label>
+    {{ form.priority(class="custom-select") }}
+
+    <!-- Expected Impact -->
+    <label for="expected_impact">{{ form.expected_impact.label.text }}</label>
+    {{ form.expected_impact(class="", rows="4") }}
+    <small>{{ form.expected_impact.description }}</small>
+
+    {{ form.submit(class="btn-submit") }}
+  </form>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <ul class="flashes">
+        {% for category, message in messages %}
+          <li class="flash {{ category }}">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+</div>
+
+<div id="loading-overlay">
+  <p><strong>Generating policy bulletin...</strong> Please wait a few moments.</p>
+  <p><em>Note: This process may take up to 2 minutes depending on the analysis complexity.</em></p>
+  <div class="spinner"></div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  function showLoading() {
+    document.getElementById('loading-overlay').style.display = 'flex';
+  }
+</script>
+{% endblock %}

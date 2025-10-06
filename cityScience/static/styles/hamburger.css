@@ -6,7 +6,6 @@
     width: 25px;
     height: 20px;
     cursor: pointer;
-    position: fixed;
     z-index: 2100;
 }
 
@@ -102,9 +101,6 @@
         justify-content: space-between;
     }
 
-    .center {
-        flex: unset; /* libera espaço */
-    }
 }
 
 /* ===== Responsividade menor que 550px ===== */

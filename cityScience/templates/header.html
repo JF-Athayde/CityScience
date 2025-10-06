@@ -1,6 +1,4 @@
 <header class="header">
-
-    <div></div>
     <div class="hamburger" id="hamburger">
         <span></span>
         <span></span>
@@ -10,14 +8,11 @@
     <!-- Sidebar -->
     <nav class="sidebar" id="sidebar">
         <div class="sidebar-links">
-            <a href="{{ url_for('landingpage') }}">Explore</a>
-            <a href="#">Research & Updates</a>
-            <a href="{{ url_for('about') }}">About</a>
             <a href="{{ url_for('landingpage') }}"><i class="fas fa-home"></i> Home</a>
             <a href="{{ url_for('map_page') }}"><i class="fas fa-map"></i> Interactive Map</a>
-            <a href="{{ url_for('game') }}"><i class="fas fa-child"></i>Game</a>
-            <a href="{{ url_for('insights') }}"><i class="fas fa-lightbulb"></i> Insights</a>
             <a href="{{ url_for('create_bulletin_urban') }}"><i class="fas fa-pencil-alt"></i> Create Bulletin</a>
+            <a href="{{ url_for('insights') }}"><i class="fas fa-lightbulb"></i> Weather Insights</a>
+            <a href="{{ url_for('nerd') }}">Nerd Zone</a>
             <a href="{{ url_for('about') }}"><i class="fas fa-info-circle"></i> About</a>
         </div>
         <div class="sidebar-footer">
@@ -26,21 +21,14 @@
         </div>
     </nav>
 
-    <div class="left">
-        <a href="{{ url_for('landingpage') }}" class="link">Explore</a>
-        <div class="search">
-            <input type="text" placeholder="Search">
-        </div>
-    </div>
-
     <div class="center">
         <p class="font01" style="color: rgb(255, 255, 255);">City Science</p>
-        <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Logo City Science" class="logo">
+        <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="City Science Logo" class="logo">
     </div>
 
     <div class="right">
-        <a href="#" class="link">Research & Updates</a>
+        <a href="{{ url_for('nerd') }}" class="link">Nerd Zone</a>
         <a href="{{ url_for('about') }}" class="link">About</a>
-        <a href="{{ url_for('eco_explorer') }}" class="link live">Eco-Explorer+ <span>LIVE</span></a>
+        <a href="{{ url_for('map_page') }}" class="link live">Interactive Map+ <span>LIVE</span></a>
     </div>
 </header>

@@ -1,10 +1,9 @@
 {% extends "model.html" %}
 
-{% block title %}GreenBuild Report - Eco Explorer{% endblock %}
+{% block title %}GreenBuild Report{% endblock %}
 
 {% block style %}
 <link rel="stylesheet" href="{{ url_for('static', filename='styles/create_bulletin.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='styles/build.css') }}">
 {% endblock %}
 
 {% block content %}
@@ -13,11 +12,12 @@
 <nav class="bulletin-menu">
   <a href="{{ url_for('create_bulletin_urban') }}">Urban Insight</a>
   <a href="{{ url_for('create_bulletin_build') }}" id="b1">GreenBuild Report</a>
+  <a href="{{ url_for('create_bulletin_management') }}">Policy Bulletin</a>
 </nav>
 
 <div class="bulletin-form-container">
-  <!-- Título atualizado para refletir o foco do GreenBuild Report -->
-  <h2>Relatório Técnico LEED & Sustentabilidade</h2>
+  <!-- Title updated to reflect the focus of the GreenBuild Report -->
+  <h2>LEED & Sustainability Technical Report</h2>
   <form method="POST" action="{{ url_for('create_bulletin_build') }}" class="bulletin-form" onsubmit="showLoading()">
     {{ form.hidden_tag() }}
     
@@ -59,8 +59,8 @@
 </div>
 
 <div id="loading-overlay">
-  <p><strong>Gerando boletim técnico...</strong> Por favor, aguarde alguns instantes.</p>
-  <p><em>Nota: Isso pode levar até 2 minutos, dependendo da complexidade.</em></p>
+  <p><strong>Generating technical bulletin...</strong> Please wait a moment.</p>
+  <p><em>Note: This may take up to 2 minutes, depending on complexity.</em></p>
   <div class="spinner"></div>
 </div>
 {% endblock %}

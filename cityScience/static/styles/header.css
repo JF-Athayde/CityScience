@@ -54,46 +54,6 @@
     color: #dbdbdb;
 }
 
-.search {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.search input {
-    width: 25vw;
-    max-width: 300px;
-    padding: 8px 12px;
-    border-radius: 20px;
-    border: 1px solid #ccc;
-    outline: none;
-    font-size: 14px;
-    transition: all 0.3s ease;
-    background: transparent;
-}
-
-/* Efeito ao focar */
-.search input:focus {
-    border-color: #00bcd4;
-    box-shadow: 0 0 6px rgba(0, 188, 212, 0.4);
-}
-
-/* Placeholder mais suave */
-.search input::placeholder {
-    color: #aaa;
-    font-style: italic;
-}
-
-/* Ícone dentro do campo */
-.search::before {
-    position: absolute;
-    right: 12px;
-    font-size: 16px;
-    color: #888;
-    pointer-events: none;
-}
-
-
 /* NASA+ Live */
 .live span {
     background: red;

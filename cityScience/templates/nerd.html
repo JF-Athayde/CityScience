@@ -1,0 +1,777 @@
+{% extends "model.html" %}
+
+{% block title %}City Science - Nerd{% endblock %}
+
+{% block style %}
+    <style>
+        .header_section {
+            color: #2c2c2c;
+            padding: 30px 15px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .header_section h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .header_section .subtitle {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            opacity: 0.85;
+        }
+
+        .header_section p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .section h2 {
+            color: #2c3e50;
+            font-size: 2rem;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            font-weight: 400;
+        }
+
+        .section h3 {
+            color: #34495e;
+            font-size: 1.4rem;
+            margin: 30px 0 15px 0;
+            font-weight: 500;
+        }
+
+        .formula-box {
+            background: #ffffff;
+            border: 2px solid #3498db;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 25px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(52, 152, 219, 0.1);
+        }
+
+        .formula-box::before {
+            content: "MATHEMATICAL FORMULA";
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: #ffffff;
+            color: #3498db;
+            padding: 0 15px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .example-box {
+            background: #e8f5e8;
+            border: 1px solid #27ae60;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 25px 0;
+            position: relative;
+        }
+
+        .example-box::before {
+            content: "PRACTICAL EXAMPLE";
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: #ffffff;
+            color: #27ae60;
+            padding: 0 15px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .application-box {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 25px 0;
+            position: relative;
+        }
+
+        .application-box::before {
+            content: "APPLICATION IN THE INTERACTIVE MAP";
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: #ffffff;
+            color: #e67e22;
+            padding: 0 15px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .step-list {
+            background: #f8f9fa;
+            border-left: 4px solid #6c757d;
+            padding: 20px 25px;
+            margin: 20px 0;
+        }
+
+        .step-list ol {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .step-list li {
+            margin: 10px 0;
+            font-weight: 500;
+        }
+
+        .math-expression {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.1em;
+            font-style: italic;
+            color: #2c3e50;
+            background: #ecf0f1;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin: 0 2px;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        .complexity-note {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 0.95rem;
+        }
+
+        .complexity-note strong {
+            color: #0c5460;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+        }
+
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .code-snippet {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+            
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section {
+                padding: 25px 20px;
+            }
+            
+            .formula-box, .example-box, .application-box {
+                padding: 20px 15px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+{% include 'sub_header.html' %}
+    <div class="container">
+        <div class="header_section">
+            <h1>Making Of: City Science</h1>
+            <div class="subtitle">Mathematical Foundations and Implemented Algorithms</div>
+            <p>A detailed analysis of the technologies and methodologies behind the environmental analysis system</p>
+        </div>
+
+
+        <!-- Redes Neurais Perceptron -->
+        <div class="section">
+            <h2>🧠 Neural Networks: Perceptron Algorithm</h2>
+            
+            <p>The <strong>Perceptron</strong> is the most fundamental artificial neuron model, developed by Frank Rosenblatt in 1957. It is a binary linear classifier that learns through an iterative error-correction process.</p>
+
+            <h3>Mathematical Operation</h3>
+            <div class="formula-box">
+                <strong>Activation Function:</strong><br>
+                y = f(∑ wᵢ × xᵢ + b)<br><br>
+                
+                <strong>Step Function:</strong><br>
+                f(z) = { 1 if z ≥ 0, 0 if z < 0 }<br><br>
+                
+                <strong>Learning Rule:</strong><br>
+                wᵢ(t+1) = wᵢ(t) + η × (target - output) × xᵢ<br>
+                b(t+1) = b(t) + η × (target - output)<br><br>
+                
+                where η is the learning rate
+            </div>
+
+            <div class="step-list">
+                <strong>Training Algorithm:</strong>
+                <ol>
+                    <li>Initialize weights and bias randomly</li>
+                    <li>For each training example:</li>
+                    <li>Calculate the output: y = f(∑wᵢxᵢ + b)</li>
+                    <li>Compute the error: e = target - y</li>
+                    <li>Update weights: wᵢ = wᵢ + η × e × xᵢ</li>
+                    <li>Repeat until convergence or maximum number of epochs</li>
+                </ol>
+            </div>
+
+            <div class="example-box">
+                <strong>Example: AND Logic Gate</strong><br><br>
+                <strong>Training Data:</strong><br>
+                • (0,0) → 0<br>
+                • (0,1) → 0<br>
+                • (1,0) → 0<br>
+                • (1,1) → 1<br><br>
+                
+                <strong>Process (η = 0.1):</strong><br>
+                Initial weights: w₁ = 0.3, w₂ = -0.1, b = 0.2<br><br>
+                
+                <strong>Epoch 1, Example (1,1):</strong><br>
+                • Output: f(0.3×1 + (-0.1)×1 + 0.2) = f(0.4) = 1<br>
+                • Error: 1 - 1 = 0 (correct, no update)<br><br>
+                
+                <strong>Epoch 1, Example (0,1):</strong><br>
+                • Output: f(0.3×0 + (-0.1)×1 + 0.2) = f(0.1) = 1<br>
+                • Error: 0 - 1 = -1<br>
+                • w₁ = 0.3 + 0.1×(-1)×0 = 0.3<br>
+                • w₂ = -0.1 + 0.1×(-1)×1 = -0.2<br>
+                • b = 0.2 + 0.1×(-1) = 0.1
+            </div>
+
+            <div class="application-box">
+                In the interactive map, the Perceptron is used for <strong>binary classification of environmental conditions</strong>. For example, determining if conditions are "favorable" or "unfavorable" based on multiple factors such as temperature, humidity, air quality, and UV index. The model learns patterns from historical data to make real-time predictions.
+            </div>
+
+            <div class="complexity-note">
+                <strong>Computational Complexity:</strong> O(n×m×e) where n = number of features, m = number of examples, e = number of epochs. <strong>Limitation:</strong> Can only learn linearly separable functions.
+            </div>
+        </div>
+
+        <!-- Distância Haversine -->
+        <div class="section">
+            <h2>🌍 Geodesic Distance Calculation: Haversine Formula</h2>
+            
+            <p>The <strong>Haversine Formula</strong> calculates the distance between two points on the surface of a sphere (like Earth) using their latitude and longitude coordinates. It is essential for geolocation systems.</p>
+
+            <h3>Mathematical Derivation</h3>
+            <div class="formula-box">
+                <strong>Full Formula:</strong><br>
+                a = sin²(Δφ/2) + cos(φ₁) × cos(φ₂) × sin²(Δλ/2)<br>
+                c = 2 × atan2(√a, √(1-a))<br>
+                d = R × c<br><br>
+                
+                <strong>Where:</strong><br>
+                • φ₁, φ₂ = latitudes of points 1 and 2 (in radians)<br>
+                • Δφ = φ₂ - φ₁ (latitude difference)<br>
+                • Δλ = λ₂ - λ₁ (longitude difference)<br>
+                • R = Earth's radius (6,371 km)<br>
+                • d = distance between the points
+            </div>
+
+            <div class="step-list">
+                <strong>Calculation Steps:</strong>
+                <ol>
+                    <li>Convert coordinates from degrees to radians</li>
+                    <li>Compute the differences Δφ and Δλ</li>
+                    <li>Apply the Haversine formula to find 'a'</li>
+                    <li>Calculate the central angle 'c'</li>
+                    <li>Multiply by Earth's radius to get the distance</li>
+                </ol>
+            </div>
+
+            <div class="example-box">
+                <strong>Example: São Paulo → Rio de Janeiro</strong><br><br>
+                <strong>Coordinates:</strong><br>
+                • São Paulo: 23.5505°S, 46.6333°W<br>
+                • Rio de Janeiro: 22.9068°S, 43.1729°W<br><br>
+                
+                <strong>Conversion to Radians:</strong><br>
+                • φ₁ = -23.5505° × π/180 = -0.4108 rad<br>
+                • λ₁ = -46.6333° × π/180 = -0.8139 rad<br>
+                • φ₂ = -22.9068° × π/180 = -0.3996 rad<br>
+                • λ₂ = -43.1729° × π/180 = -0.7535 rad<br><br>
+                
+                <strong>Calculations:</strong><br>
+                • Δφ = -0.3996 - (-0.4108) = 0.0112 rad<br>
+                • Δλ = -0.7535 - (-0.8139) = 0.0604 rad<br>
+                • a = sin²(0.0056) + cos(-0.4108) × cos(-0.3996) × sin²(0.0302)<br>
+                • a = 0.0000314 + 0.9158 × 0.9211 × 0.0009 = 0.0008<br>
+                • c = 2 × atan2(√0.0008, √0.9992) = 0.0566 rad<br>
+                • d = 6371 × 0.0566 = <strong>360.8 km</strong>
+            </div>
+
+            <div class="application-box">
+                In the interactive map, the Haversine distance is used to <strong>calculate proximity between weather stations</strong>, determine the closest station to the user, and compute influence radii for environmental data interpolation. It is also essential for location-based recommendation systems.
+            </div>
+
+            <div class="complexity-note">
+                <strong>Accuracy:</strong> Typical error < 0.5% for distances up to 1000 km. <strong>Alternatives:</strong> Vincenty's formula for higher precision (error < 0.1 mm) but higher computational complexity.
+            </div>
+        </div>
+
+        <!-- Levenshtein Distance -->
+        <div class="section">
+            <h2>📝 Edit Distance: Levenshtein Algorithm</h2>
+            
+            <p>The <strong>Levenshtein Distance</strong> measures the minimum number of edit operations (insertion, deletion, substitution) required to transform one string into another. It is widely used in spell checking and approximate string matching.</p>
+
+            <h3>Dynamic Programming</h3>
+            <div class="formula-box">
+                <strong>Recurrence:</strong><br>
+                D(i,j) = min {<br>
+                &nbsp;&nbsp;D(i-1,j) + 1,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// deletion<br>
+                &nbsp;&nbsp;D(i,j-1) + 1,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// insertion<br>
+                &nbsp;&nbsp;D(i-1,j-1) + cost&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// substitution<br>
+                }<br><br>
+                
+                <strong>Base Cases:</strong><br>
+                D(i,0) = i&nbsp;&nbsp;&nbsp;&nbsp;// i deletions<br>
+                D(0,j) = j&nbsp;&nbsp;&nbsp;&nbsp;// j insertions<br><br>
+                
+                <strong>Cost:</strong><br>
+                cost = 0 if s₁[i] = s₂[j], otherwise 1
+            </div>
+
+            <div class="step-list">
+                <strong>Algorithm:</strong>
+                <ol>
+                    <li>Create a (m+1) × (n+1) matrix</li>
+                    <li>Initialize the first row and column</li>
+                    <li>For each cell (i,j):</li>
+                    <li>Compute substitution cost</li>
+                    <li>Select the operation with minimum cost</li>
+                    <li>Fill the matrix bottom-up</li>
+                    <li>Result is in D(m,n)</li>
+                </ol>
+            </div>
+
+            <div class="example-box">
+                <strong>Example: "KITTEN" → "SITTING"</strong><br><br>
+                
+                <table>
+                    <tr>
+                        <th></th><th>ε</th><th>S</th><th>I</th><th>T</th><th>T</th><th>I</th><th>N</th><th>G</th>
+                    </tr>
+                    <tr>
+                        <th>ε</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td>
+                    </tr>
+                    <tr>
+                        <th>K</th><td>1</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td>
+                    </tr>
+                    <tr>
+                        <th>I</th><td>2</td><td>2</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td>
+                    </tr>
+                    <tr>
+                        <th>T</th><td>3</td><td>3</td><td>2</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td>
+                    </tr>
+                    <tr>
+                        <th>T</th><td>4</td><td>4</td><td>3</td><td>2</td><td>1</td><td>2</td><td>3</td><td>4</td>
+                    </tr>
+                    <tr>
+                        <th>E</th><td>5</td><td>5</td><td>4</td><td>3</td><td>2</td><td>2</td><td>3</td><td>4</td>
+                    </tr>
+                    <tr>
+                        <th>N</th><td>6</td><td>6</td><td>5</td><td>4</td><td>3</td><td>3</td><td>2</td><td>3</td>
+                    </tr>
+                </table>
+                
+                <strong>Required Operations (3 edits):</strong><br>
+                1. Substitute K → S<br>
+                2. Substitute E → I<br>
+                3. Insert G at the end
+            </div>
+
+            <div class="application-box">
+                In the interactive map, Levenshtein distance is used for <strong>intelligent location search</strong>. When a user types a city name with typos, the algorithm finds the closest match in the database. It is also used for autocomplete suggestions and query correction.
+            </div>
+
+            <div class="complexity-note">
+                <strong>Complexity:</strong> Time O(m×n), Space O(m×n). <strong>Optimization:</strong> Space can be reduced to O(min(m,n)) using only two rows of the matrix.
+            </div>
+        </div>
+
+       <!-- Dijkstra's Algorithm -->
+        <div class="section">
+            <h2>🗺️ Shortest Path: Dijkstra's Algorithm</h2>
+            
+            <p>The <strong>Dijkstra Algorithm</strong> finds the shortest path from a source vertex to all other vertices in a graph with non-negative weights. It is fundamental in navigation and routing systems.</p>
+
+            <h3>Algorithm Operation</h3>
+            <div class="formula-box">
+                <strong>Edge Relaxation:</strong><br>
+                If dist[u] + weight(u,v) < dist[v]:<br>
+                &nbsp;&nbsp;dist[v] = dist[u] + weight(u,v)<br>
+                &nbsp;&nbsp;predecessor[v] = u<br><br>
+                
+                <strong>Invariant:</strong><br>
+                For every processed vertex u:<br>
+                dist[u] = actual minimum distance from source to u<br><br>
+                
+                <strong>Stopping Condition:</strong><br>
+                All vertices processed OR<br>
+                Next vertex has infinite distance
+            </div>
+
+            <div class="step-list">
+                <strong>Detailed Algorithm:</strong>
+                <ol>
+                    <li>Initialize: dist[source] = 0, dist[others] = ∞</li>
+                    <li>Create a set of unvisited vertices</li>
+                    <li>While there are unvisited vertices:</li>
+                    <li>Select vertex u with the smallest dist[u]</li>
+                    <li>Mark u as visited</li>
+                    <li>For each neighbor v of u:</li>
+                    <li>Apply relaxation on edge (u,v)</li>
+                    <li>Update dist[v] if necessary</li>
+                </ol>
+            </div>
+
+            <div class="example-box">
+                <strong>Example: Graph with 5 vertices</strong><br><br>
+                
+                <strong>Graph:</strong><br>
+                • A → B (weight 4), A → C (weight 2)<br>
+                • B → C (weight 1), B → D (weight 5)<br>
+                • C → D (weight 8), C → E (weight 10)<br>
+                • D → E (weight 2)<br><br>
+                
+                <strong>Execution (source = A):</strong><br><br>
+                
+                <table>
+                    <tr>
+                        <th>Iteration</th><th>Vertex</th><th>dist[A]</th><th>dist[B]</th><th>dist[C]</th><th>dist[D]</th><th>dist[E]</th>
+                    </tr>
+                    <tr>
+                        <td>0</td><td>-</td><td>0</td><td>∞</td><td>∞</td><td>∞</td><td>∞</td>
+                    </tr>
+                    <tr>
+                        <td>1</td><td>A</td><td>0</td><td>4</td><td>2</td><td>∞</td><td>∞</td>
+                    </tr>
+                    <tr>
+                        <td>2</td><td>C</td><td>0</td><td>3</td><td>2</td><td>10</td><td>12</td>
+                    </tr>
+                    <tr>
+                        <td>3</td><td>B</td><td>0</td><td>3</td><td>2</td><td>8</td><td>12</td>
+                    </tr>
+                    <tr>
+                        <td>4</td><td>D</td><td>0</td><td>3</td><td>2</td><td>8</td><td>10</td>
+                    </tr>
+                    <tr>
+                        <td>5</td><td>E</td><td>0</td><td>3</td><td>2</td><td>8</td><td>10</td>
+                    </tr>
+                </table>
+                
+                <strong>Shortest Paths:</strong><br>
+                • A → C: 2 (direct)<br>
+                • A → B: 3 (A → C → B)<br>
+                • A → D: 8 (A → C → B → D)<br>
+                • A → E: 10 (A → C → B → D → E)
+            </div>
+
+            <div class="application-box">
+                In the interactive map, Dijkstra is used for <strong>optimization of ecological routes</strong>. The algorithm finds paths that minimize exposure to pollution, considering factors such as air quality, noise levels, and green areas. Each route segment has an "environmental weight" based on local conditions.
+            </div>
+
+            <div class="complexity-note">
+                <strong>Complexity:</strong> O((V + E) log V) with a binary heap, O(V² + E) with a simple array. <strong>Limitation:</strong> Does not work with negative weights (use Bellman-Ford in that case).
+            </div>
+        </div>
+
+
+        <!-- HSL Color System -->
+        <div class="section">
+            <h2>🎨 Color Mapping: HSL System</h2>
+            
+            <p>The <strong>HSL System (Hue, Saturation, Lightness)</strong> represents colors more intuitively than RGB. It is ideal for creating data-driven gradients, where hue represents different values or categories.</p>
+
+            <h3>HSL to RGB Conversion</h3>
+            <div class="formula-box">
+                <strong>Normalized Parameters:</strong><br>
+                H' = H / 360°&nbsp;&nbsp;(0 ≤ H' < 1)<br>
+                S' = S / 100%&nbsp;&nbsp;(0 ≤ S' ≤ 1)<br>
+                L' = L / 100%&nbsp;&nbsp;(0 ≤ L' ≤ 1)<br><br>
+                
+                <strong>Intermediate Calculations:</strong><br>
+                C = (1 - |2L' - 1|) × S'<br>
+                X = C × (1 - |(H' × 6) mod 2 - 1|)<br>
+                m = L' - C/2<br><br>
+                
+                <strong>Temporary RGB Values:</strong><br>
+                If 0 ≤ H' < 1/6: (R',G',B') = (C,X,0)<br>
+                If 1/6 ≤ H' < 2/6: (R',G',B') = (X,C,0)<br>
+                If 2/6 ≤ H' < 3/6: (R',G',B') = (0,C,X)<br>
+                If 3/6 ≤ H' < 4/6: (R',G',B') = (0,X,C)<br>
+                If 4/6 ≤ H' < 5/6: (R',G',B') = (X,0,C)<br>
+                If 5/6 ≤ H' < 1: (R',G',B') = (C,0,X)<br><br>
+                
+                <strong>Final RGB:</strong><br>
+                R = (R' + m) × 255<br>
+                G = (G' + m) × 255<br>
+                B = (B' + m) × 255
+            </div>
+
+            <div class="example-box">
+                <strong>Example: HSL(240°, 100%, 50%) → RGB</strong><br><br>
+                
+                <strong>Normalization:</strong><br>
+                • H' = 240° / 360° = 0.667<br>
+                • S' = 100% / 100% = 1.0<br>
+                • L' = 50% / 100% = 0.5<br><br>
+                
+                <strong>Calculations:</strong><br>
+                • C = (1 - |2×0.5 - 1|) × 1.0 = 1.0<br>
+                • H' × 6 = 0.667 × 6 = 4.0<br>
+                • X = 1.0 × (1 - |4.0 mod 2 - 1|) = 1.0 × (1 - 1) = 0<br>
+                • m = 0.5 - 1.0/2 = 0<br><br>
+                
+                <strong>Region (4/6 ≤ H' < 5/6):</strong><br>
+                • (R',G',B') = (0,X,C) = (0,0,1)<br><br>
+                
+                <strong>Final RGB:</strong><br>
+                • R = (0 + 0) × 255 = 0<br>
+                • G = (0 + 0) × 255 = 0<br>
+                • B = (1 + 0) × 255 = 255<br><br>
+                
+                <strong>Result: RGB(0, 0, 255) = Pure Blue</strong>
+            </div>
+
+            <div class="application-box">
+                In the interactive map, the HSL system maps <strong>environmental indices to intuitive colors</strong>. For example: H=0° (red) for poor conditions, H=60° (yellow) for moderate, H=120° (green) for excellent. Saturation indicates data reliability, and lightness represents the intensity of the phenomenon.
+            </div>
+
+            <div class="complexity-note">
+                <strong>Advantages:</strong> Intuitive mapping, smooth gradients, easy interpolation. <strong>Applications:</strong> Heatmaps, dashboards, scientific data visualization.
+            </div>
+        </div>
+
+
+        <!-- Correlation Analysis -->
+        <div class="section">
+            <h2>📊 Statistical Analysis: Pearson and Spearman Correlation</h2>
+            
+            <p><strong>Correlation analysis</strong> measures the strength and direction of the linear relationship between two variables. It is essential for identifying patterns and dependencies in environmental data.</p>
+
+            <h3>Pearson Correlation</h3>
+            <div class="formula-box">
+                <strong>Correlation Coefficient:</strong><br>
+                r = Σ(xᵢ - x̄)(yᵢ - ȳ) / √[Σ(xᵢ - x̄)² × Σ(yᵢ - ȳ)²]<br><br>
+                
+                <strong>Alternative Form:</strong><br>
+                r = (n×Σxᵢyᵢ - Σxᵢ×Σyᵢ) / √[(n×Σxᵢ² - (Σxᵢ)²)(n×Σyᵢ² - (Σyᵢ)²)]<br><br>
+                
+                <strong>Coefficient of Determination:</strong><br>
+                R² = r²<br><br>
+                
+                <strong>Interpretation:</strong><br>
+                • -1 ≤ r ≤ 1<br>
+                • r > 0: positive correlation<br>
+                • r < 0: negative correlation<br>
+                • |r| close to 1: strong correlation<br>
+                • |r| close to 0: weak correlation
+            </div>
+
+            <h3>Spearman Correlation</h3>
+            <div class="formula-box">
+                <strong>Based on Rankings:</strong><br>
+                ρ = 1 - (6×Σdᵢ²) / (n×(n² - 1))<br><br>
+                
+                where dᵢ = difference between the ranks of xᵢ and yᵢ<br><br>
+                
+                <strong>When to use:</strong><br>
+                • Data does not follow a normal distribution<br>
+                • Monotonic but not linear relationship<br>
+                • Presence of outliers<br>
+                • Ordinal data
+            </div>
+
+            <div class="example-box">
+                <strong>Example: Temperature vs Energy Consumption</strong><br><br>
+                
+                <strong>Data:</strong><br>
+                <table>
+                    <tr>
+                        <th>Temp (°C)</th><th>Consumption (kWh)</th><th>x²</th><th>y²</th><th>xy</th>
+                    </tr>
+                    <tr><td>20</td><td>150</td><td>400</td><td>22500</td><td>3000</td></tr>
+                    <tr><td>25</td><td>180</td><td>625</td><td>32400</td><td>4500</td></tr>
+                    <tr><td>30</td><td>220</td><td>900</td><td>48400</td><td>6600</td></tr>
+                    <tr><td>35</td><td>280</td><td>1225</td><td>78400</td><td>9800</td></tr>
+                    <tr><td>40</td><td>350</td><td>1600</td><td>122500</td><td>14000</td></tr>
+                    <tr><th>Σ</th><th>150</th><th>1180</th><th>4750</th><th>304200</th><th>37900</th></tr>
+                </table>
+                
+                <strong>Pearson Calculation:</strong><br>
+                • n = 5<br>
+                • r = (5×37900 - 150×1180) / √[(5×4750 - 150²)(5×304200 - 1180²)]<br>
+                • r = (189500 - 177000) / √[(23750 - 22500)(1521000 - 1392400)]<br>
+                • r = 12500 / √[1250 × 128600] = 12500 / 12679 = <strong>0.986</strong><br><br>
+                
+                <strong>Interpretation:</strong> Very strong positive correlation (r = 0.986)
+            </div>
+
+            <div class="application-box">
+                In the interactive map, correlation analysis identifies <strong>relationships between environmental variables</strong>. For example: correlation between temperature and air quality, humidity and cloud formation, or wind speed and pollutant dispersion. This allows for more accurate predictions and identification of climate patterns.
+            </div>
+
+            <div class="complexity-note">
+                <strong>Significance Test:</strong> t = r×√(n-2)/√(1-r²) follows a t-distribution with (n-2) degrees of freedom. <strong>Warning:</strong> Correlation does not imply causation!
+            </div>
+        </div>
+
+        <!-- K-Means Clustering -->
+        <div class="section">
+            <h2>🤖 Machine Learning: K-Means Algorithm</h2>
+            
+            <p><strong>K-Means</strong> is an unsupervised clustering algorithm that partitions data into k groups, minimizing intra-cluster variance. It is widely used for segmentation and exploratory data analysis.</p>
+
+            <h3>Objective Function</h3>
+            <div class="formula-box">
+                <strong>Within-Cluster Sum of Squares (WCSS):</strong><br>
+                J = Σᵢ₌₁ᵏ Σₓ∈Cᵢ ||x - μᵢ||²<br><br>
+                
+                <strong>Cluster Centroid:</strong><br>
+                μᵢ = (1/|Cᵢ|) × Σₓ∈Cᵢ x<br><br>
+                
+                <strong>Euclidean Distance:</strong><br>
+                d(x,μ) = √(Σⱼ₌₁ᵈ (xⱼ - μⱼ)²)<br><br>
+                
+                <strong>Convergence Criterion:</strong><br>
+                ||μᵢ⁽ᵗ⁺¹⁾ - μᵢ⁽ᵗ⁾|| < ε for all i
+            </div>
+
+            <div class="step-list">
+                <strong>Lloyd's Algorithm:</strong>
+                <ol>
+                    <li>Choose k (number of clusters)</li>
+                    <li>Initialize k centroids randomly</li>
+                    <li>Repeat until convergence:</li>
+                    <li>Assign each point to the nearest centroid</li>
+                    <li>Recalculate centroids as the mean of assigned points</li>
+                    <li>Check stopping criterion</li>
+                </ol>
+            </div>
+
+            <div class="example-box">
+                <strong>Example: 2D Clustering with k=2</strong><br><br>
+                
+                <strong>Data:</strong> {(1,1), (2,1), (4,3), (5,4)}<br><br>
+                
+                <strong>Initialization:</strong><br>
+                • μ₁ = (1.5, 2.0)<br>
+                • μ₂ = (4.0, 3.5)<br><br>
+                
+                <strong>Iteration 1 - Assignment:</strong><br>
+                • d((1,1), μ₁) = √((1-1.5)² + (1-2)²) = √1.25 = 1.12<br>
+                • d((1,1), μ₂) = √((1-4)² + (1-3.5)²) = √15.25 = 3.90<br>
+                • (1,1) → Cluster 1<br><br>
+                
+                • d((2,1), μ₁) = √((2-1.5)² + (1-2)²) = √1.25 = 1.12<br>
+                • d((2,1), μ₂) = √((2-4)² + (1-3.5)²) = √10.25 = 3.20<br>
+                • (2,1) → Cluster 1<br><br>
+                
+                <strong>Final Assignments:</strong><br>
+                • C₁ = {(1,1), (2,1)}<br>
+                • C₂ = {(4,3), (5,4)}<br><br>
+                
+                <strong>New Centroids:</strong><br>
+                • μ₁ = ((1+2)/2, (1+1)/2) = (1.5, 1.0)<br>
+                • μ₂ = ((4+5)/2, (3+4)/2) = (4.5, 3.5)<br><br>
+                
+                <strong>WCSS = 0.5 + 0.5 + 0.5 + 0.5 = 2.0</strong>
+            </div>
+
+            <div class="application-box">
+                In the interactive map, K-Means groups <strong>regions with similar environmental characteristics</strong>. For example: identifying climate zones, grouping weather stations by seasonal patterns, or segmenting urban areas by pollution levels. This allows for more efficient monitoring strategies and localized alerts.
+            </div>
+
+            <div class="complexity-note">
+                <strong>Complexity:</strong> O(n×k×i×d) where n=points, k=clusters, i=iterations, d=dimensions. <strong>Limitations:</strong> Sensitive to initialization, assumes spherical clusters, requires predefined k.
+            </div>
+        </div>
+
+        <!-- Conclusion -->
+        <div class="section">
+            <h2>🎯 Integration in the Interactive Map</h2>
+            
+            <p>All these technologies work together in the interactive map to create an intelligent environmental analysis system:</p>
+
+            <div class="step-list">
+                <strong>Processing Pipeline:</strong>
+                <ol>
+                    <li><strong>Collection:</strong> Haversine to locate nearby stations</li>
+                    <li><strong>Search:</strong> Levenshtein for query correction</li>
+                    <li><strong>Analysis:</strong> Correlation to identify patterns</li>
+                    <li><strong>Classification:</strong> Perceptron to categorize conditions</li>
+                    <li><strong>Clustering:</strong> K-Means for regional segmentation</li>
+                    <li><strong>Routing:</strong> Dijkstra for optimized paths</li>
+                    <li><strong>Visualization:</strong> HSL for intuitive mapping</li>
+                </ol>
+            </div>
+
+            <div class="application-box">
+                <strong>Integrated Use Example:</strong><br>
+                A user searches for "São Paulo" (typo) → Levenshtein corrects to "São Paulo" → Haversine finds nearby stations → Correlation analyzes relationships between variables → Perceptron classifies conditions → HSL maps to colors → Dijkstra suggests an eco-friendly route → K-Means identifies regional patterns.
+            </div>
+        </div>
+{% endblock %}

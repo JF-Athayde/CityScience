@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const MIN_ZOOM = 2.5;
   const MAX_ZOOM = 15;
   const MIN_VISIBLE_POINTS = 100;
-  const MAX_GENERATED_POINTS = MIN_VISIBLE_POINTS*3; // Limite 'Z' de pontos gerados para não sobrecarregar
+  const MAX_GENERATED_POINTS = MIN_VISIBLE_POINTS*100; // Limite 'Z' de pontos gerados para não sobrecarregar
   const map = L.map('map', {
     zoomControl: true,
     worldCopyJump: false,
@@ -83,24 +83,43 @@ document.addEventListener('DOMContentLoaded', () => {
   
   function generateRecommendations(vals) {
     const recs = [];
-    const heat = Number(vals.heat || 0), air = Number(vals.air || 0), uv = Number(vals.uv || 0), humidity = Number(vals.humidity || 0), comfort = Number(vals.comfort || 0);
+    const heat = Number(vals.heat || 0), 
+          air = Number(vals.air || 0), 
+          uv = Number(vals.uv || 0), 
+          humidity = Number(vals.humidity || 0), 
+          comfort = Number(vals.comfort || 0);
     const low = 4, med = 6;
-    if (heat <= low) recs.push('Alto calor: mais áreas verdes e sombreamento.'); else if (heat <= med) recs.push('Calor moderado: vegetação em pontos críticos.'); else recs.push('Calor adequado: manter estratégias de resfriamento.');
-    if (air <= low) recs.push('Ar ruim: monitorar poluição e reduzir tráfego.'); else if (air <= med) recs.push('Ar moderado: implementar vegetação urbana.'); else recs.push('Ar bom: proteger zonas de baixa emissão.');
-    if (uv >= 8) recs.push('UV alto: ampliar sombras e conscientização.'); else if (uv >= 5) recs.push('UV moderado: pontos sombreados em áreas públicas.'); else recs.push('UV baixo: manter cobertura verde.');
-    if (humidity >= 8) recs.push('Alta umidade: melhorar drenagem e pavimentos permeáveis.'); else if (humidity <= 3) recs.push('Baixa umidade: retenção de água e plantas resistentes.');
-    if (comfort <= 3) recs.push('Conforto baixo: mais sombreamento, vento e água.'); else if (comfort <= 6) recs.push('Conforto moderado: melhorias localizadas.'); else recs.push('Conforto alto: manter áreas públicas agradáveis.');
+
+    if (heat <= low) recs.push('High heat: increase green areas and shading.');
+    else if (heat <= med) recs.push('Moderate heat: vegetation in critical spots.');
+    else recs.push('Adequate heat: maintain cooling strategies.');
+
+    if (air <= low) recs.push('Poor air quality: monitor pollution and reduce traffic.');
+    else if (air <= med) recs.push('Moderate air quality: implement urban vegetation.');
+    else recs.push('Good air quality: protect low-emission zones.');
+
+    if (uv >= 8) recs.push('High UV: expand shading and raise awareness.');
+    else if (uv >= 5) recs.push('Moderate UV: shaded spots in public areas.');
+    else recs.push('Low UV: maintain green coverage.');
+
+    if (humidity >= 8) recs.push('High humidity: improve drainage and use permeable pavements.');
+    else if (humidity <= 3) recs.push('Low humidity: water retention and drought-resistant plants.');
+
+    if (comfort <= 3) recs.push('Low comfort: add shading, airflow, and water features.');
+    else if (comfort <= 6) recs.push('Moderate comfort: localized improvements.');
+    else recs.push('High comfort: maintain pleasant public areas.');
+
     return recs;
-  }
+}
 
   // --- CRIAÇÃO DE POP-UP (MODIFICADO) ---
   function createPopupHTML(item, isGenerated = false) {
     const vals = item.values || {};
     const comp = computeWeightedTanh(vals);
     
-    // MODIFICADO: Título anônimo para pontos gerados
-    const titleHTML = isGenerated ? `<strong>Ponto selecionado</strong>` : `<strong>${item.region}</strong>`;
-    const descriptionHTML = isGenerated ? `<strong>dados do ponto selecionado</strong>` : `${item.summary}`;
+    // MODIFIED: Anonymous title for generated points
+    const titleHTML = isGenerated ? `<strong>Selected Point</strong>` : `<strong>${item.region}</strong>`;
+    const descriptionHTML = isGenerated ? `<strong>Selected point data</strong>` : `${item.summary}`;
 
     let html = `
       <div style="min-width:200px">
@@ -128,9 +147,9 @@ document.addEventListener('DOMContentLoaded', () => {
       html += `
         <hr style="margin:6px 0">
         <div style="text-align:center; margin-top:4px;">
-          <a href="/create_bulletin?city=${encodeURIComponent(item.region)}"
+          <a href="/create_bulletin_urban?city=${encodeURIComponent(item.region)}"
             style="display:inline-block;padding:6px 12px;border:1px solid #000000ff;color:#000000;border-radius:4px;text-decoration:none;font-size:13px;">
-            Ir para o boletim completo
+            Go to full bulletin
           </a>
         </div>
       `;
@@ -338,7 +357,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const q = query.trim();
     const scored = regionIndex.map(r => ({ r, score: scoreMatch(r, q) }));
     const filtered = scored.filter(s => s.score > 10).sort((a,b) => b.score - a.score);
-    if(filtered.length === 0){ searchResultEl.innerHTML = '<em>Nenhuma região encontrada.</em>'; return; }
+    if (filtered.length === 0) {
+      searchResultEl.innerHTML = '<em>No region found.</em>';
+      return;
+    }
+
     const top = filtered.slice(0,7);
     let html = '<div style="display:flex;flex-direction:column;gap:6px">';
     top.forEach(item => {
@@ -367,21 +390,25 @@ document.addEventListener('DOMContentLoaded', () => {
     updateLegend(metric);
   }
 
-  function updateLegend(metric){
+  function updateLegend(metric) {
     const legendEl = document.getElementById('legend');
-    if(!legendEl) return;
+    if (!legendEl) return;
+
     let title = metric.charAt(0).toUpperCase() + metric.slice(1);
-    let html = `<strong>Legenda — ${title}`;
-    if(metric === 'composite') html += ' (Índice Composto)';
+    let html = `<strong>Legend — ${title}`;
+
+    if (metric === 'composite') html += ' (Composite Index)';
     html += '</strong>';
-    if(metric === 'composite'){
+
+    if (metric === 'composite') {
       html += '<div class="legend-gradient" style="background:linear-gradient(90deg, hsl(0,75%,45%), hsl(120,75%,45%))"></div>';
-      html += '<div class="legend-scale"><span>Baixo (0)</span><span>0.5</span><span>Alto (1)</span></div>';
+      html += '<div class="legend-scale"><span>Low (0)</span><span>0.5</span><span>High (1)</span></div>';
     } else {
       const c0 = getColorForMetric(metric, 0), c10 = getColorForMetric(metric, 10);
       html += `<div class="legend-gradient" style="background:linear-gradient(90deg, ${c0}, ${c10})"></div>`;
       html += '<div class="legend-scale"><span>0</span><span>5</span><span>10</span></div>';
     }
+
     legendEl.innerHTML = html;
   }
 

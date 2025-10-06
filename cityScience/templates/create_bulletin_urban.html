@@ -1,6 +1,6 @@
 {% extends "model.html" %}
 
-{% block title %}Create Bulletin - Eco Explorer{% endblock %}
+{% block title %}Create Bulletin{% endblock %}
 
 {% block style %}
 <link rel="stylesheet" href="{{ url_for('static', filename='styles/create_bulletin.css') }}">
@@ -10,12 +10,14 @@
 {% include 'sub_header.html' %}
 
 <nav class="bulletin-menu">
-  <a href="{{ url_for('create_bulletin_urban') }}" id="b1">Urban Insight</a>
-  <a href="{{ url_for('create_bulletin_build') }}">GreenBuild Report</a>
+  <a href="{{ url_for('create_bulletin_urban') }}" id="b1">Urban Insight</a>
+  <a href="{{ url_for('create_bulletin_build') }}">GreenBuild Report</a>
+  <a href="{{ url_for('create_bulletin_management') }}">Policy Bulletin</a>
 </nav>
+
 <div class="bulletin-form-container">
   <h2>Create Environmental Bulletin</h2>
-  <form method="POST" action="{{ url_for('create_bulletin_build') }}" class="bulletin-form" onsubmit="showLoading()">
+  <form method="POST" action="{{ url_for('create_bulletin_urban') }}" class="bulletin-form" onsubmit="showLoading()">
     {{ form.hidden_tag() }}
     
     <label for="city">{{ form.city.label.text }}</label>

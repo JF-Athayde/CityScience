@@ -30,15 +30,6 @@
 
 @media (max-width: 480px) {
     .eco-nav {
-        /* allow wrapping to avoid overflow and keep center alignment */
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 6px;
-        height: auto;
-        padding: 6px 8px;
-    }
-    .eco-nav a {
-        font-size: 12px;
-        padding: 6px 8px;
+        display: none;
     }
 }

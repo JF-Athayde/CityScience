@@ -1,6 +1,6 @@
 {% extends 'model.html' %}
 
-{% block title %}About City Science{% endblock %}
+{% block title %}About Us - City Science{% endblock %}
 
 {% block style %}
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/about-team.css') }}">
@@ -23,22 +23,24 @@
                     <div class="team-member">
                         <div class="member-photo"><img src="{{ url_for('static', filename='assets/jf.jpeg') }}" alt="Profile Picture"></div>
                         <h3 class="member-name">João Fellipe Coutinho Athayde</h3>
-                        <p class="member-role">Full-stack Developer & Researcher</p>
+                        <p class="member-role">Developer & AI Researcher</p>
                         <p class="member-description">
-                            I am João Fellipe Coutinho Athayde, I started programming at the age of nine and since then I have been studying Artificial Intelligence, Deep Learning, and systems development. I founded the Mind Forge Society and participate in programming and research projects, always seeking to learn and share knowledge.
+                            I am João Fellipe Coutinho Athayde, 15 years old. I started programming at the age of nine and have been studying Artificial Intelligence, Deep Learning, and systems development ever since. I founded the Mind Forge Society and participate in programming and research projects, always seeking to learn and share knowledge.
                         </p>
                         <div class="member-links">
                             <a href="https://www.linkedin.com/in/fellipe-athayde-990281303" target="_blank">LinkedIn</a>
-                            <a href="https://instagram.com/athayde.fellipe" target="_blank">Instagram</a>
+                            <a href="https://instagram.com/athayde.fellippe" target="_blank">Instagram</a>
                         </div>
                     </div>
     
                     <div class="team-member">
-                        <div class="member-photo"><img src="{{ url_for('static', filename='assets/lr.jpeg') }}" alt="Profile Picture"></div>
+                        <div class="member-photo">
+                            <img src="{{ url_for('static', filename='assets/lr.jpeg') }}" alt="Marcos Lázaro Romão Silveira">
+                        </div>
                         <h3 class="member-name">Marcos Lázaro Romão Silveira</h3>
                         <p class="member-role">Electrical Engineer & Researcher</p>
                         <p class="member-description">
-                            Electrical and Electronic Engineering student with a focus on Computer Engineering. Passionate about technological innovation and developing AI-driven solutions. 25 years old, currently pursuing a degree in Electrical Engineering at Fluminense Federal University (UFF).
+                            Electrical and Electronic Engineering student focusing on Computer Engineering. Passionate about technological innovation and developing AI-driven solutions. 25 years old, currently studying Electrical Engineering at Fluminense Federal University (UFF).
                         </p>
                         <div class="member-links">
                             <a href="http://linkedin.com/in/lazarobrr" target="_blank">LinkedIn</a>
@@ -48,27 +50,27 @@
     
                     <div class="team-member">
                         <div class="member-photo">
-                            <img src="{{ url_for('static', filename='assets/lourenco.jpg') }}" alt="Profile Picture">
+                            <img src="{{ url_for('static', filename='assets/lourenco.jpg') }}" alt="Lorenzo Silva">
                         </div>
                         <h3 class="member-name">Lorenzo Silva</h3>
                         <p class="member-role">Neuroscientist & Researcher</p>
                         <p class="member-description">
-                            Lorenzo Silva, 23 years old, is a student and researcher in the field of Neuroscience, dedicated to understanding brain mechanisms and their applications in technology, health, and human behavior. His focus is on uniting science and innovation to advance the understanding of the mind and develop intelligent solutions.
+                            23-year-old Neuroscience student and researcher dedicated to understanding brain mechanisms and their applications in technology, health, and human behavior. Focused on uniting science and innovation to advance understanding of the mind and develop intelligent solutions.
                         </p>
                         <div class="member-links">
                             <a href="https://www.instagram.com/lourenco_jsilva?igsh=MXRleTVycHBmOXlvbA==" target="_blank">Instagram</a>
-                            <a href="mailto:silvalou0015@gmail.com">E-mail</a>
                         </div>
                     </div>
 
                     <div class="team-member">
-                        <div class="member-photo"><img src="{{ url_for('static', filename='assets/edilaine.jpg') }}" alt="Member Picture"></div>
+                        <div class="member-photo">
+                            <img src="{{ url_for('static', filename='assets/edilaine.jpg') }}" alt="Edilaine Rocha">
+                        </div>
                         <h3 class="member-name">Edilaine Rocha</h3>
                         <p class="member-role">Journalist</p>
                         <p class="member-description">
-                            I am a 23-year-old journalist passionate about geopolitics and international relations. I believe that knowledge is the key to demystifying the world and understanding its nuances. With a curious mind and an insatiable thirst for learning, I seek to share stories and perspectives that inspire reflection and understanding.
+                            23-year-old journalist passionate about geopolitics and international relations. I believe knowledge is key to understanding the world and its nuances. Curious and eager to learn, I share stories that inspire reflection and insight.
                         </p>
-
                         <div class="member-links">
                             <a href="https://www.instagram.com/edilaineeerocha?igsh=MTV4aW1nNW1peWIxbA%3D%3D" target="_blank">Instagram</a>
                         </div>
@@ -76,28 +78,33 @@
                     
                     <div class="team-member">
                         <div class="member-photo">
-                            <img src="{{ url_for('static', filename='assets/ana_beatriz.jpg') }}" alt="Profile Picture">
+                            <img src="{{ url_for('static', filename='assets/ana_beatriz.jpg') }}" alt="Ana Beatriz Costa Alves">
                         </div>
                         <h3 class="member-name">Ana Beatriz Costa Alves</h3>
                         <p class="member-role">Student</p>
                         <p class="member-description">
-                            I am Ana Beatriz Costa Alves, 20 years old, with a completed high school education. I am currently preparing for university entrance exams while also applying myself to the field of Information Technology. I am motivated to grow academically and professionally, building a solid career path in technology.
+                            20-year-old student preparing for university entrance exams while exploring Information Technology. Motivated to grow academically and professionally, aiming to build a solid career path in technology.
                         </p>
                         <div class="member-links">
-                            <a href="https://www.linkedin.com/in/ana-beatriz-costa-87ba0a351?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">LinkedIn</a>
+                            <a href="https://www.linkedin.com/in/ana-beatriz-costa-87ba0a351" target="_blank">LinkedIn</a>
                             <a href="https://instagram.com/ana_triz.a" target="_blank">Instagram</a>
                         </div>
                     </div>
 
-
                     <div class="team-member">
-                        <div class="member-photo">👩</div>
-                        <h3 class="member-name"></h3>
-                        <p class="member-role">Person's Title</p>
+                        <div class="member-photo">
+                            <img src="{{ url_for('static', filename='assets/liz_helena.jpg') }}" alt="Liz Helena Santana da Silva">
+                        </div>
+                        <h3 class="member-name">Liz Helena Santana da Silva</h3>
+                        <p class="member-role">Designer & Future Urban Architect</p>
                         <p class="member-description">
-                            Brief description about the person, their skills, and interests.
+                            22 years old, passionate about design and urban architecture. Currently studying and preparing for a career in urban planning and creative projects, always seeking innovation and aesthetic excellence.
                         </p>
+                        <div class="member-links">
+                            <a href="https://www.instagram.com/l.i.z_h?igsh=bmdkNzFrMGJkeTIx&utm_source=qr" target="_blank">Instagram</a>
+                        </div>
                     </div>
+
 
                 </div>
             </div>
